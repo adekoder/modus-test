@@ -3,8 +3,9 @@ This solution is implemented with php (lumen Framework)
 
 # System requirement
 1. Docker
-2. PHP (version 7.2) 
-3. Composer 
+2. docker-compose
+3. PHP (version 7.2) 
+4. Composer 
 
 
 # Get started
@@ -30,7 +31,9 @@ This will install all the dependencies of the project
 
 
 #### Runing project
-Once you have docker installed on the machine
+Once you have docker installed on the machine else follow this tutorial on how to setup docker on your machine
+[Install docker compose](https://docs.docker.com/compose/install/)
+
 1. CD back to the root folder of the project 
 
 ``` cd modus-test```
