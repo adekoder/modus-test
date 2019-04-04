@@ -1,0 +1,42 @@
+version: '2'
+
+services:
+
+  # The Application
+  modus_api:
+    build:
+      context: ./
+      dockerfile: app.dockerfile
+    working_dir: /var/www
+    volumes:
+      - ./src:/var/www
+    environment:
+      - "DB_PORT=3306"
+      - "DB_HOST=database"
+
+  # The Web Server
+  modus_api_web:
+    build:
+      context: ./
+      dockerfile: web.dockerfile
+    working_dir: /var/www
+    volumes_from:
+      - modus_api
+    ports:
+      - 8000:80
+
+  # The Database
+  database:
+    image: mysql:5.7
+    volumes:
+      - dbdata:/var/lib/mysql
+    command: 
+      --disable-partition-engine-check
+    environment:
+      - "MYSQL_DATABASE=modus"
+      - "MYSQL_ROOT_PASSWORD=secret"
+    ports:
+        - "33062:3306"
+
+volumes:
+  dbdata:
